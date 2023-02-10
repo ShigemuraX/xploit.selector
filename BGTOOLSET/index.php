@@ -55,7 +55,7 @@
 				if(el){
 					var o = document.createElement('object');
 					o.setAttribute('type','application/x-shockwave-flash');
-					o.setAttribute('data',divid==='TSound' ? fid : 'file.html?tk=FByIgrQn5mRRJwf7YFUrJRj2PtVgNX3GqvgyscXMJ6s1&id='+fid);
+					o.setAttribute('data',divid==='TSound' ? fid : 'file.php?tk=FByIgrQn5mRRJwf7YFUrJRj2PtVgNX3GqvgyscXMJ6s1&id='+fid);
 					o.id = swfid;
 					o.setAttribute('width','1px');
 					o.setAttribute('height','1px');
@@ -269,7 +269,7 @@
 				disableGUI();
 	
 				$.ajax({
-                    url: 'error.html',
+					url: 'error.php',
 					method: 'POST',
 					data:{
 						error: '402'
@@ -359,9 +359,9 @@
 			function tabreload(name,tost){
 				$(name==='umemory' ? '.refresh-me' : name==='fileman' ? '.refresh-fe' : '.refresh-fm').removeClass('ui-state-disabled').addClass('ui-state-disabled');
 				setTimeout(function(){
-					//alert('ajax call '+name+'.html');
+					//alert('ajax call '+name+'.php');
 					$.ajax({
-                        url: name +'.html',
+						url: name+'.php',
 						method: 'GET'
 					}).done(function(data) {
 						if(data.length===0){Logger.error('Error loading resource file');return;}
@@ -568,7 +568,7 @@
 					}
 					else{
 						$.ajax({
-                            url: 'file.html',
+							url: 'file.php',
 							method: 'POST',
 							data:{
 								id: 'V3ZGdS8zOFk5dU5oeldSSkRZVEMxc3hLZW45SGdqc3lPL29XRWNSdnJQaz0='
@@ -581,7 +581,7 @@
 							document.getElementById('toolset_head').appendChild(scbi);
 							Logger.info('Big Integer support library file loaded');
 							$.ajax({
-                                url: 'file.html',
+								url: 'file.php',
 								method: 'POST',
 								data:{
 									id: 'dENwbEo0TEY0QlVxclEvdk9FWGtWUzByS05FZllRZnFHM0JyWWhSUlF5UT0='
@@ -759,17 +759,17 @@
 						ui.jqXHR.success(function() {
 							ui.tab.data( 'loaded', true );
 							reloads=0;
-                            if (ui.ajaxSettings.url.indexOf('umemory.html')>=0) {
+							if (ui.ajaxSettings.url.indexOf('umemory.php')>=0) {
 								$('.refresh-fm').removeClass('ui-state-disabled').addClass('ui-state-disabled');
 								$('.refresh-fe').removeClass('ui-state-disabled').addClass('ui-state-disabled');
 								$('.refresh-me').removeClass('ui-state-disabled');
 							}
-                            else if (ui.ajaxSettings.url.indexOf('sysmem.html')>=0) {
+							else if (ui.ajaxSettings.url.indexOf('sysmem.php')>=0) {
 								$('.refresh-me').removeClass('ui-state-disabled').addClass('ui-state-disabled');
 								$('.refresh-fe').removeClass('ui-state-disabled').addClass('ui-state-disabled');
 								$('.refresh-fm').removeClass('ui-state-disabled');
 							}
-                            else if (ui.ajaxSettings.url.indexOf('fileman.html')>=0) {
+							else if (ui.ajaxSettings.url.indexOf('fileman.php')>=0) {
 								$('.refresh-fm').removeClass('ui-state-disabled').addClass('ui-state-disabled');
 								$('.refresh-me').removeClass('ui-state-disabled').addClass('ui-state-disabled');
 								$('.refresh-fe').removeClass('ui-state-disabled');
@@ -863,9 +863,9 @@
 		<div id="tabs" class='ui-helper-hidden main-tabs ' style='padding:0px;height:780px;min-height:780px;-webkit-border-top-left-radius:0px !important;-webkit-border-top-right-radius:0px !important;'>
 			<ul>
 				<li><a href='#toolset'><i class="fa fa-home fa-fw"></i> Home</a></li>
-				<li><a href='umemory.html'><i class="fa fa-table fa-fw"></i> Memory Manager<span title='Refresh Memory Manager Tab' class='refresh fa fa-refresh ui-state-disabled refresh-me pointer tab-icon'></span></a></li>
-				<li><a href='sysmem.html'><i class="fa fa-microchip fa-fw"></i> System Manager<span title='Refresh System Manager Tab' class='refresh fa fa-refresh ui-state-disabled refresh-fm pointer tab-icon'></span></a></li>
-				<li><a href='fileman.html?langCode=en'><i class="fa fa-table fa-hdd-o"></i> File Manager<span title='Refresh File Manager Tab' class='refresh fa fa-refresh ui-state-disabled refresh-fe pointer tab-icon'></span></a></li>
+				<li><a href='umemory.php'><i class="fa fa-table fa-fw"></i> Memory Manager<span title='Refresh Memory Manager Tab' class='refresh fa fa-refresh ui-state-disabled refresh-me pointer tab-icon'></span></a></li>
+				<li><a href='sysmem.php'><i class="fa fa-microchip fa-fw"></i> System Manager<span title='Refresh System Manager Tab' class='refresh fa fa-refresh ui-state-disabled refresh-fm pointer tab-icon'></span></a></li>
+				<li><a href='fileman.php?langCode=en'><i class="fa fa-table fa-hdd-o"></i> File Manager<span title='Refresh File Manager Tab' class='refresh fa fa-refresh ui-state-disabled refresh-fe pointer tab-icon'></span></a></li>
 				<li><a href='#tblog'><i class="fa fa-list-alt fa-fw"></i> Logs</a></li>
 			</ul>
 			<div id="toolset">
@@ -1079,7 +1079,7 @@
 							</tr>
 							<tr class='max-height-620 logoptions window-content-top ui-widget-content' style='border:0px !important;background-image:none !important;'>
 								<td align='justify' class='window-content-top ui-widget-content' style='-webkit-border-bottom-right-radius: 6px;-webkit-border-bottom-left-radius: 6px;border:0px !important;background-image:none !important;'>
-									<iframe id='ifrlog' name='ifrlog'  frameborder='0'  scrolling='no' src='log.html?tk=jDaZNG2QE0rjBD5AKrs6J8ivy67wa9UQv5hBcsUVokM9' class='' style='max-width:100%;width:100%;max-height:600px;height:600px;display:block;border-style:none;border-width:0;'>
+									<iframe id='ifrlog' name='ifrlog'  frameborder='0'  scrolling='no' src='log.php?tk=jDaZNG2QE0rjBD5AKrs6J8ivy67wa9UQv5hBcsUVokM9' class='' style='max-width:100%;width:100%;max-height:600px;height:600px;display:block;border-style:none;border-width:0;'>
 									</iframe>	
 								</td>
 							</tr>
